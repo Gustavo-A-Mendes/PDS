@@ -1,0 +1,99 @@
+FUNÇÃO DE FILTROS DIGITAIS
+
+    ============================== DESCRIÇÃO ==============================
+     •  Projeto de Filtros Digitais usando a transformação bilinear com compensação de warping
+        •  s = (2/Ts) * (z-1) / (z+1)
+
+        •  Ωm^(p) = (2/Ts) * tan(Ωm*Ts/2)    ;   m = 1, 2, 3, ..., L
+
+        Contudo, o fator (2/Ts) não altera a resposta do filtro digital projetado, 
+        podendo ser ignorado:
+        
+        •  s = (z-1) / (z+1)
+
+        •  Ωm^(p) = tan(Ωm*Ts/2)    ;   m = 1, 2, 3, ..., L
+
+    ============================== REQUISITOS =============================
+     •  Deve permitir escolher o tipo do filtro:
+        1. Passa-Baixas
+        2. Passa-Altas
+        3. Passa-Faixa
+        4. Rejeita-Faixa
+    
+     •  Deve permitir escolher o modelo de filtro:
+        1. Butterworth
+        2. Chebyshev
+
+     •  Deve receber o Período de Amostragem Ts
+
+     •  Deve receber os valores das:
+        1. Frequências de passagem {Ωp} (rad/s).
+        2. Frequências de rejeição {Ωs} (rad/s).
+        3. Atenuação máxima na banda de passagem αp (dB).
+        4. Atenuação mínima na banda de rejeição αs (dB).
+
+     •  Deve retornar os coeficientes do numerador e denominador da função transferência do
+        filtro digital projetado.
+
+    ============================= OBSERVAÇÕES =============================
+     •  Para filtros de Butterworth, um argumento que indica se os requisitos de projeto serão
+        atendidos na banda de passagem Ωp, na banda de rejeição Ωs ou através da média aritmética
+        simples entre as duas bandas.
+
+     •  NÃO É PERMITIDO O USO DE FUNÇÕES NATIVAS/PRONTAS PARA O PROJETO DE FILTROS DIGITAIS
+
+     •  Deve-se calcular os polos do filtro analógico e utilizar a relação existente entre
+        os polos do filtro analógico e os polos do filtro digital obtido através da transformação 
+        bilinear.
+
+    =============================== PROJETOS ==============================
+
+     a) Filtro passa-baixas Butterworth:
+        Ωp = 5 rad/s
+        Ωs = 25 rad/s
+        αp = 1 dB
+        αs = 30 dB
+
+        T = 0.01 s
+        O sistema processa os sinais utilizando um A/D e D/A operando com T = 0,01 s.
+ 
+     b) Filtro passa-baixas Chebyshev:
+        Ωp = 100 rad/s
+        Ωs = 200 rad/s
+        αp = 1 dB
+        αs = 22 dB
+        
+        T = 10-3 s
+        O sistema processa os sinais utilizando um A/D e D/A operando com T = 10−3 s.
+ 
+     c) Filtro passa-altas de Butterworth:
+        Ωp = 20 rad/s
+        Ωs = 10 rad/s
+        αp = 1 dB
+        αs = 20 dB
+        
+        T = 0.05 s
+        O sistema processa os sinais utilizando um A/D e D/A operando com T = 0,05 s. 
+        Atenda aos requisitos da banda de passagem.
+ 
+     d) Filtro passa-faixas de Chebyshev:
+        Ωp1 = 50 rad/s  Ωp2 = 150 rad/s
+        Ωs1 = 30 rad/s  Ωs2 = 200 rad/s
+        αp = 1 dB
+        αs = 25 dB
+        
+        T = 10-3 s
+        O sistema processa os sinais utilizando um A/D e D/A operando com T = 10−3 s.
+ 
+     e) Filtro rejeita-faixas de Butterworth:
+        Ωp1 = 20 rad/s  Ωp2 = 100 rad/s
+        Ωs1 = 40 rad/s  Ωs2 = 80 rad/s
+        αp = 1 dB
+        αs = 20 dB
+        
+        T = 10-3 s
+        O sistema processa os sinais utilizando um A/D e D/A operando com T = 0,01 s.
+        Atenda aos requisitos da banda de rejeição.
+ 
+    Para cada um dos itens, determine a função de transferência do filtro digital projetado
+    e plote o gráfico da resposta em magnitude do filtro em dB.
