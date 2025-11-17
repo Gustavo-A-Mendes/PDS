@@ -2,7 +2,7 @@ import numpy as np
 import DigitalFilter as df
 
 # ============================================================
-# QUESTÃO 06e - [BUTTERWORTH]
+# QUESTÃO 06e - [REJEITA-FAIXAS BUTTERWORTH]
 
 # Parâmetros do filtro:
 filter_type = "bandstop"
@@ -27,6 +27,8 @@ num, den = digital_filter.butterworth_filter(
     warping=True
 )
 
+parametros = [Omega_p, Omega_s, alpha_p, alpha_s]
+
 # Exibe valores filtrados pelo filtro digital, em rad/amostra:
 print(f"""Frequências filtro analógico
 \tOmega_p: {Omega_p[0]}
@@ -39,4 +41,11 @@ Numerador: {num}
 Denominador: {den}
 """)
 
-digital_filter.plot_response(num, den, Ts)
+digital_filter.plot_response(
+    num=num,
+    den=den,
+    x_min=Omega_p[0]*0.8,
+    x_max=Omega_p[1]*1.5,
+    Ts=Ts,
+    params=parametros
+)

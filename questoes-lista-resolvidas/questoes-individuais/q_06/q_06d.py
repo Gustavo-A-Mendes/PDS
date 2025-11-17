@@ -2,7 +2,7 @@ import numpy as np
 import DigitalFilter as df
 
 # ============================================================
-# QUESTÃO 06d - [CHEBYSHEV]
+# QUESTÃO 06d - [PASSA-FAIXA CHEBYSHEV]
 
 # Parâmetros do filtro:
 filter_type = "bandpass"
@@ -22,10 +22,11 @@ num, den = digital_filter.chebyshev_filter(
     alpha_p=alpha_p,
     alpha_s=alpha_s,
     type_response=filter_type,
-    # oc_type="max",      # requisito da banda de rejeição
     Ts=Ts,
     warping=True
 )
+
+parametros = [Omega_p, Omega_s, alpha_p, alpha_s]
 
 # Exibe valores filtrados pelo filtro digital, em rad/amostra:
 print(f"""Frequências filtro analógico
@@ -39,4 +40,11 @@ Numerador: {num}
 Denominador: {den}
 """)
 
-digital_filter.plot_response(num, den, Ts)
+digital_filter.plot_response(
+    num=num,
+    den=den,
+    x_min=Omega_s[0]*0.8,
+    x_max=Omega_s[1]*1.5,
+    Ts=Ts,
+    params=parametros
+)
